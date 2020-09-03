@@ -1,0 +1,112 @@
+MariaDB [erodriguez]> show tables;
++----------------------+
+| Tables_in_erodriguez |
++----------------------+
+| Products             |
+| Users                |
+| category             |
+| post                 |
+| reply                |
+| thread               |
+| topic                |
+| user                 |
+| user_info            |
++----------------------+
+9 rows in set (0.00 sec)
+
+MariaDB [erodriguez]> desc category;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| cat_id   | int(10)      | NO   | PRI | NULL    | auto_increment |
+| cat_name | varchar(256) | NO   |     | NULL    |                |
+| cat_desc | varchar(256) | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+MariaDB [erodriguez]> desc topic;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| top_id   | int(8)       | NO   | PRI | NULL    | auto_increment |
+| top_name | varchar(256) | NO   |     | NULL    |                |
+| top_desc | varchar(256) | NO   |     | NULL    |                |
+| top_cat  | int(10)      | NO   | MUL | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+MariaDB [erodriguez]> desc thread;
++----------------+---------------+------+-----+-------------------+----------------+
+| Field          | Type          | Null | Key | Default           | Extra          |
++----------------+---------------+------+-----+-------------------+----------------+
+| thread_id      | int(30)       | NO   | PRI | NULL              | auto_increment |
+| thread_title   | varchar(256)  | NO   |     | NULL              |                |
+| thread_date    | datetime      | NO   |     | CURRENT_TIMESTAMP |                |
+| thread_content | varchar(5000) | NO   |     | NULL              |                |
+| thread_img     | varchar(128)  | YES  |     | NULL              |                |
+| thread_top     | int(10)       | NO   | MUL | NULL              |                |
+| thread_user    | int(10)       | NO   | MUL | NULL              |                |
++----------------+---------------+------+-----+-------------------+----------------+
+7 rows in set (0.00 sec)
+
+MariaDB [erodriguez]> desc post;
++--------------+---------------+------+-----+-------------------+----------------+
+| Field        | Type          | Null | Key | Default           | Extra          |
++--------------+---------------+------+-----+-------------------+----------------+
+| post_id      | int(30)       | NO   | PRI | NULL              | auto_increment |
+| post_content | varchar(5000) | NO   |     | NULL              |                |
+| post_img     | varchar(128)  | YES  |     | NULL              |                |
+| post_date    | datetime      | NO   |     | CURRENT_TIMESTAMP |                |
+| post_thread  | int(10)       | NO   | MUL | NULL              |                |
+| post_user    | int(10)       | NO   | MUL | NULL              |                |
+| post_state   | int(2)        | NO   |     | 1                 |                |
++--------------+---------------+------+-----+-------------------+----------------+
+7 rows in set (0.00 sec)
+
+MariaDB [erodriguez]> desc reply;
++---------------+---------------+------+-----+-------------------+----------------+
+| Field         | Type          | Null | Key | Default           | Extra          |
++---------------+---------------+------+-----+-------------------+----------------+
+| reply_id      | int(30)       | NO   | PRI | NULL              | auto_increment |
+| reply_content | varchar(5000) | NO   |     | NULL              |                |
+| reply_date    | datetime      | NO   |     | CURRENT_TIMESTAMP |                |
+| reply_user    | int(10)       | NO   | MUL | NULL              |                |
+| reply_post    | int(10)       | NO   | MUL | NULL              |                |
+| reply_state   | int(2)        | NO   |     | 1                 |                |
++---------------+---------------+------+-----+-------------------+----------------+
+6 rows in set (0.00 sec)
+
+MariaDB [erodriguez]> desc user;
++-------------+--------------+------+-----+-------------------+----------------+
+| Field       | Type         | Null | Key | Default           | Extra          |
++-------------+--------------+------+-----+-------------------+----------------+
+| user_id     | int(10)      | NO   | PRI | NULL              | auto_increment |
+| user_uname  | varchar(128) | NO   | UNI | NULL              |                |
+| user_pwd    | varchar(128) | NO   |     | NULL              |                |
+| user_fname  | varchar(64)  | YES  |     | NULL              |                |
+| user_lname  | varchar(64)  | YES  |     | NULL              |                |
+| user_email  | varchar(128) | NO   | UNI | NULL              |                |
+| user_img    | varchar(128) | NO   |     | default.png       |                |
+| user_create | datetime     | NO   |     | CURRENT_TIMESTAMP |                |
+| user_login  | datetime     | NO   |     | CURRENT_TIMESTAMP |                |
+| user_level  | int(2)       | NO   |     | 1                 |                |
+| user_state  | int(2)       | NO   |     | 1                 |                |
++-------------+--------------+------+-----+-------------------+----------------+
+11 rows in set (0.00 sec)
+
+MariaDB [erodriguez]> desc user_info;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| info_id        | int(10)      | NO   | PRI | NULL    | auto_increment |
+| info_bio       | varchar(384) | YES  |     | NULL    |                |
+| info_gender    | varchar(64)  | YES  |     | NULL    |                |
+| info_bday      | date         | YES  |     | NULL    |                |
+| info_home      | varchar(128) | YES  |     | NULL    |                |
+| info_work      | varchar(128) | YES  |     | NULL    |                |
+| info_school    | varchar(128) | YES  |     | NULL    |                |
+| info_education | varchar(128) | YES  |     | NULL    |                |
+| info_website   | varchar(256) | YES  |     | NULL    |                |
+| info_user      | int(10)      | NO   | MUL | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+10 rows in set (0.00 sec)
